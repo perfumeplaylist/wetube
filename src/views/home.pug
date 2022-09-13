@@ -1,0 +1,5 @@
+extends base
+include mixin/video
+block content
+    each item in videos
+        +video(item)

@@ -1,0 +1,8 @@
+mixin video(item)
+    a(href=`/video/${item._id}`)=item.title
+    div
+        p=item.description
+        small=item.hashtags
+        br
+        small=new Date(item.createAt).toLocaleTimeString("ko-kr",{weekday: 'long',year:'numeric',month:'numeric',day:'numeric'})
+    hr

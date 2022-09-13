@@ -1,0 +1,61 @@
+extends ../base
+include ../mixin/video
+
+block script 
+    script(src="/static/js/videoPlayer.js",defer)
+    if loggedIn
+        script(src="/static/js/comment.js",defer) 
+block content
+    div.videoContainer(data-id=video._id)
+        video(src="/"+video.videoUrl).video
+        div.videoController
+            button.js-play Play
+            button.js-mute Muted
+            div.timelineContainer
+                span.js-startTimeline 00:00
+                span /
+                span.js-endTimeline 00:00
+                input.js-timeline(type="range", name="timeline")
+            input.js-volumn(type="range", name="volumn",max="1",value="0.5",step="0.1",min="0")
+            button.js-screen FullScreen
+            ul.playbackController
+                li
+                    button.js-playbackRange 0.25
+                li
+                    button.js-playbackRange 0.5
+                li
+                    button.js-playbackRange 0.75
+                li
+                    button.js-playbackRange 1.0
+                li
+                    button.js-playbackRange 1.5
+                li
+                    button.js-playbackRange 2.0
+    div
+        p=video.description
+        span Upload by 
+            a(href=`/user/${video.owner._id}`)=video.owner.username 
+        br
+        small=new Date(video.createAt).toLocaleTimeString("ko-kr",{weekday: 'long',year:'numeric',month:'numeric',day:'numeric'})
+        br
+        small=video.hashtags
+        if loggedIn
+            if String(video.owner._id) === String(user._id)
+                div
+                    a(href=`${video._id}/edit`) Edit Video &rarr;
+                    br
+                    a(href=`${video._id}/delete`) Delete Video &rarr;
+            div.comments
+                form(method="POST").comment__form
+                    textarea.comment__form__textarea(cols="30", rows="10",placeholder="Write your comments...") 
+                    button.comment__form__btn Add Comments
+        div.comment
+            ul.comment__list
+                each item in video.comments.reverse()
+                    li.comment__list__item(data-comment-id=item.id)
+                        i.fas.fa-comment
+                        span #{item.text}
+                        if loggedIn
+                            if String(user._id) === String(item.owner._id)
+                                button.comment__delBtn ❌
+                        //- span #{item.rating}

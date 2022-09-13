@@ -1,0 +1,14 @@
+extends ../base
+block script
+    script(src="/static/js/recoder.js",defer) 
+block content
+    div
+        video#preview
+        button#actionBtn start recoding
+    form(method="POST",enctype="multipart/form-data")
+        label(for="video") Video File
+        input(type="file",id="video",name="video",accept="video/*",required)
+        input(type="text", name="title",placeholder="Input video title",required)
+        input(type="text", name="description",placeholder="Input video description",required)
+        input(type="text", name="hashtags",placeholder="Input hashtags ,",required)
+        input(type="submit",value="Upload")

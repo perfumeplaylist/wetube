@@ -1,0 +1,15 @@
+extends ../base
+block content
+    form(method="POST")
+        input(type="text",placeholder="Input Username",name="username",required)
+        input(type="password",placeholder="Input password",name="password",required)
+        input(type="submit",value="login")
+        br
+        a(href="/user/github/start") Login with github &rarr;
+        br
+        a(href="/user/kakao/start") Login with kakao &rarr;
+
+    hr
+    div
+        span Create account? 
+            a(href="/join") Join &rarr;
