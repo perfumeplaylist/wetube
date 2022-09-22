@@ -6,8 +6,11 @@
   "author": "Kim",
   "license": "ISC",
   "scripts": {
+    "start":"node build/init.js",
+    "build:server":"babel src -d build",
+    "build:asset":"webpack --mode=production",
     "dev:server": "nodemon",
-    "dev:asset": "webpack"
+    "dev:asset": "webpack watch --mode=development"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.10.0",
