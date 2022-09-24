@@ -11,7 +11,7 @@
     },
   "scripts": {
     "start":"node build/init.js",
-    "build":"npm run build:server&&build:asset",
+    "build":"npm run build:server && npm run build:asset",
     "build:server":"babel src -d build",
     "build:asset":"webpack --mode=production",
     "dev:server": "nodemon",
