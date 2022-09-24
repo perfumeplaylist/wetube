@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Kim",
   "license": "ISC",
+  "engines": {
+    "node": "16.x",
+    "npm" : "8.x"
+    },
   "scripts": {
     "start":"node build/init.js",
     "build":"npm run build:server && build:asset",
